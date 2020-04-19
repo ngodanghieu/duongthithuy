@@ -33,7 +33,7 @@ public class Parking implements java.io.Serializable {
 	private String latitude;
 	private String capacity;
 	private String blockAmount;
-	private int ownerId;
+	private Long ownerId;
 	private String certificateOfLand;
 
 	public Parking() {
@@ -41,7 +41,7 @@ public class Parking implements java.io.Serializable {
 
 	public Parking(String parkingName, String properties, Date createdAt, Date modifiedAt, Date deletedAt,
 			String address, String kindOf, String parkingImage, String payment, String status, String longitude,
-			String latitude, String capacity, String blockAmount, int ownerId, String certificateOfLand) {
+			String latitude, String capacity, String blockAmount, Long ownerId, String certificateOfLand) {
 		this.parkingName = parkingName;
 		this.properties = properties;
 		this.createdAt = createdAt;
@@ -202,11 +202,11 @@ public class Parking implements java.io.Serializable {
 	}
 
 	@Column(name = "owner_id", nullable = false)
-	public int getOwnerId() {
+	public Long getOwnerId() {
 		return this.ownerId;
 	}
 
-	public void setOwnerId(int ownerId) {
+	public void setOwnerId(Long ownerId) {
 		this.ownerId = ownerId;
 	}
 

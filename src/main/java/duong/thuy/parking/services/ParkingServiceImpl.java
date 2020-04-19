@@ -35,7 +35,7 @@ public class ParkingServiceImpl extends BaseService implements ParkingService {
 
     @Override
     @Transactional
-    public ResponseEntity<ResponseData> createParking(ParkingSpotRequest request, int userId) {
+    public ResponseEntity<ResponseData> createParking(ParkingSpotRequest request, Long userId) {
         ResponseData responseData = new ResponseData();
         try {
             List<Parking> parkingList = parkingRepository.findAllByLongitudeAndLatitude(request.getLongitude(), request.getLatitude());
@@ -161,7 +161,7 @@ public class ParkingServiceImpl extends BaseService implements ParkingService {
         return result;
     }
 
-    private Parking createNewParking(ParkingSpotRequest request, int userId) {
+    private Parking createNewParking(ParkingSpotRequest request, Long userId) {
         Parking data = new Parking();
         data.setAddress(request.getAddress());
         data.setLatitude(request.getLatitude());

@@ -17,13 +17,13 @@ public class Ratings implements java.io.Serializable {
 
 	private Long id;
 	private int stars;
-	private int credentialId;
+	private Long credentialId;
 	private int parkingId;
 
 	public Ratings() {
 	}
 
-	public Ratings(int stars, int credentialId, int parkingId) {
+	public Ratings(int stars, Long credentialId, int parkingId) {
 		this.stars = stars;
 		this.credentialId = credentialId;
 		this.parkingId = parkingId;
@@ -51,11 +51,11 @@ public class Ratings implements java.io.Serializable {
 	}
 
 	@Column(name = "credential_id", nullable = false)
-	public int getCredentialId() {
+	public Long getCredentialId() {
 		return this.credentialId;
 	}
 
-	public void setCredentialId(int credentialId) {
+	public void setCredentialId(Long credentialId) {
 		this.credentialId = credentialId;
 	}
 

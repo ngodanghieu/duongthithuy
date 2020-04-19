@@ -9,6 +9,6 @@ public interface OwnerRepository extends JpaRepository<Owners,Long> {
 
     List<Owners> findAllByPhoneNumber(String phone);
 
-    List<Owners> findByUserId(int userId);
+    List<Owners> findByUserId(Long userId);
 
 }
