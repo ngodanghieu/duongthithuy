@@ -41,6 +41,7 @@ public class TransactionServiceImpl extends BaseService implements TransactionSe
         data.setReasonMesage(request.getPhoneNumber());
         data.setParkingId(request.getParkingId());
         data.setAmount(request.getRequestedPayment());
+        data.setStatus(Constant.Status.IN_ACTIVE.getStatus());
         return data;
     }
 }
