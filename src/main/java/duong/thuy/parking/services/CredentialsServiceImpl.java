@@ -71,7 +71,7 @@ public class CredentialsServiceImpl extends BaseService implements CredentialsSe
     }
 
     @Override
-    public ResponseEntity<ResponseData> getUserProfile(int userId) {
+    public ResponseEntity<ResponseData> getUserProfile(Long userId) {
 
         ResponseData responseData = new ResponseData();
         try {

@@ -11,6 +11,6 @@ public interface CredentialsRepository extends JpaRepository<Credentials,Long> {
 
     List<Credentials> findAllByUserName(String userName);
 
-    List<Credentials> findAllById(int userId);
+    List<Credentials> findAllById(Long userId);
 
 }

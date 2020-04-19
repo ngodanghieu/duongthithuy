@@ -23,7 +23,7 @@ public class OwnerServiceImpl extends BaseService implements OwnerService {
 
     @Override
     @Transactional
-    public ResponseEntity<ResponseData> createOwner(CreateOwnerRequest request, int userId) {
+    public ResponseEntity<ResponseData> createOwner(CreateOwnerRequest request, Long userId) {
         ResponseData responseData = new ResponseData();
         try {
             List<Owners> ownersList = ownerRepository.findAllByPhoneNumber(request.getPhoneNumber());
@@ -42,7 +42,7 @@ public class OwnerServiceImpl extends BaseService implements OwnerService {
         }
     }
 
-    private Owners createOwnerEntity(CreateOwnerRequest request, int userId) {
+    private Owners createOwnerEntity(CreateOwnerRequest request, Long userId) {
         Owners data = new Owners();
         data.setFullName(request.getFullName());
         data.setCmndImage(request.getCmndImage());

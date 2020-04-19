@@ -17,12 +17,12 @@ public class UserDevices implements java.io.Serializable {
 
 	private Long id;
 	private String deviceToken;
-	private Integer credentialId;
+	private Long credentialId;
 
 	public UserDevices() {
 	}
 
-	public UserDevices(String deviceToken, Integer credentialId) {
+	public UserDevices(String deviceToken, Long credentialId) {
 		this.deviceToken = deviceToken;
 		this.credentialId = credentialId;
 	}
@@ -49,11 +49,11 @@ public class UserDevices implements java.io.Serializable {
 	}
 
 	@Column(name = "credential_id")
-	public Integer getCredentialId() {
+	public Long getCredentialId() {
 		return this.credentialId;
 	}
 
-	public void setCredentialId(Integer credentialId) {
+	public void setCredentialId(Long credentialId) {
 		this.credentialId = credentialId;
 	}
 

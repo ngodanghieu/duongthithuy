@@ -39,7 +39,7 @@ public class CredentialsController {
     public ResponseEntity<ResponseData> getUserProfile(){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String userId = (String) auth.getPrincipal();
-        return credentialsService.getUserProfile(Integer.parseInt(userId));
+        return credentialsService.getUserProfile(Long.valueOf(userId));
     }
 
 }

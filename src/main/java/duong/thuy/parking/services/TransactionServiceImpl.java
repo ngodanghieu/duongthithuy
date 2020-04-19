@@ -37,7 +37,7 @@ public class TransactionServiceImpl extends BaseService implements TransactionSe
 
     @Override
     @Transactional
-    public ResponseEntity<ResponseData> createTransaction(CreateTransactionRequest request, int userId) {
+    public ResponseEntity<ResponseData> createTransaction(CreateTransactionRequest request, Long userId) {
         ResponseData responseData = new ResponseData();
         try {
             transactionRepository.save(createNewTransaction(request, userId));
@@ -142,7 +142,7 @@ public class TransactionServiceImpl extends BaseService implements TransactionSe
     }
 
     @SneakyThrows
-    private Transactions createNewTransaction(CreateTransactionRequest request, int userId) {
+    private Transactions createNewTransaction(CreateTransactionRequest request, Long userId) {
         Transactions data = new Transactions();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
         data.setCreatedAt(new Date());

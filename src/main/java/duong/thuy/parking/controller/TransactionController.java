@@ -32,13 +32,11 @@ public class TransactionController {
                                                           BindingResult bindingResult) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String userId = (String) auth.getPrincipal();
-        return transactionService.createTransaction(request,Integer.parseInt(userId));
+        return transactionService.createTransaction(request,Long.valueOf(userId));
     }
     @PostMapping("owner/get/transactions/parking/{parkingId}/state/{status}")
     public ResponseEntity<ResponseData> getListParkingRequestForHost(@PathParam("parkingId")int parkingId,
                                                                      @PathParam("status")String status) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String userId = (String) auth.getPrincipal();
         return transactionService.getListParkingRequestForHost(parkingId,status);
     }
 

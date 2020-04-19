@@ -28,6 +28,6 @@ public class OwnerController {
     public ResponseEntity<ResponseData> createOwner(@Valid @RequestBody CreateOwnerRequest request , BindingResult bindingResult){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String userId = (String) auth.getPrincipal();
-        return ownerService.createOwner(request,Integer.parseInt(userId));
+        return ownerService.createOwner(request,Long.valueOf(userId));
     }
 }

@@ -19,13 +19,13 @@ public class Owners implements java.io.Serializable {
 	private String fullName;
 	private String cmndImage;
 	private String phoneNumber;
-	private int userId;
+	private Long userId;
 	private String status;
 
 	public Owners() {
 	}
 
-	public Owners(String fullName, String cmndImage, String phoneNumber, int userId, String status) {
+	public Owners(String fullName, String cmndImage, String phoneNumber, Long userId, String status) {
 		this.fullName = fullName;
 		this.cmndImage = cmndImage;
 		this.phoneNumber = phoneNumber;
@@ -73,11 +73,11 @@ public class Owners implements java.io.Serializable {
 	}
 
 	@Column(name = "user_id", nullable = false)
-	public int getUserId() {
+	public Long getUserId() {
 		return this.userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 

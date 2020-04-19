@@ -19,7 +19,7 @@ public class FmcServiceImpl extends BaseService implements FmcService {
 
     @Override
     @Transactional
-    public ResponseEntity<ResponseData> requestUpdateFCMToken(FmcRequest request, int userId) {
+    public ResponseEntity<ResponseData> requestUpdateFCMToken(FmcRequest request, Long userId) {
         ResponseData responseData = new ResponseData();
         try {
             userFCMRepository.save(createNewFMC(request, userId));
@@ -31,7 +31,7 @@ public class FmcServiceImpl extends BaseService implements FmcService {
         }
     }
 
-    private UserDevices createNewFMC(FmcRequest request, int userId) {
+    private UserDevices createNewFMC(FmcRequest request, Long userId) {
         UserDevices userDevices = new UserDevices();
         userDevices.setCredentialId(userId);
         userDevices.setDeviceToken(request.getDeviceToken());

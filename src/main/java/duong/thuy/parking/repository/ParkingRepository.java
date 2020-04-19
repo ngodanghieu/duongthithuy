@@ -8,7 +8,7 @@ import java.util.List;
 public interface ParkingRepository extends JpaRepository<Parking, Long> {
     List<Parking> findAllByLongitudeAndLatitude(String longitude, String latitude);
 
-    List<Parking> findAllByOwnerId(int userId);
+    List<Parking> findAllByOwnerId(Long userId);
 
     List<Parking> findAllByStatus(String status);
 

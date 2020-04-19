@@ -55,7 +55,7 @@ public class ParkingServiceImpl extends BaseService implements ParkingService {
     }
 
     @Override
-    public ResponseEntity<ResponseData> getAllParkingByOwner(int userId) {
+    public ResponseEntity<ResponseData> getAllParkingByOwner(Long userId) {
         ResponseData responseData = new ResponseData();
         try {
             List<Parking> parkingList = parkingRepository.findAllByOwnerId(userId);
@@ -75,7 +75,7 @@ public class ParkingServiceImpl extends BaseService implements ParkingService {
     }
 
     @Override
-    public ResponseEntity<ResponseData> getStartAndPoint(int parkingId, int userId) {
+    public ResponseEntity<ResponseData> getStartAndPoint(int parkingId, Long userId) {
 
         ResponseData responseData = new ResponseData();
         try {

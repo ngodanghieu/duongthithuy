@@ -23,6 +23,6 @@ public class FmcController {
     public ResponseEntity<ResponseData> requestUpdateFCMToken(@RequestBody FmcRequest request) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String userId = (String) auth.getPrincipal();
-        return fmcService.requestUpdateFCMToken(request,Integer.parseInt(userId));
+        return fmcService.requestUpdateFCMToken(request,Long.valueOf(userId));
     }
 }

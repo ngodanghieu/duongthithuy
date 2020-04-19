@@ -28,14 +28,14 @@ public class ParkingController {
     public ResponseEntity<ResponseData> createParking(@Valid @RequestBody ParkingSpotRequest request, BindingResult bindingResult) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String userId = (String) auth.getPrincipal();
-        return parkingService.createParking(request,Integer.valueOf(userId));
+        return parkingService.createParking(request,Long.valueOf(userId));
     }
 
     @GetMapping("owner/get/all/parkings")
     public ResponseEntity<ResponseData> getAllParkingByOwner() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String userId = (String) auth.getPrincipal();
-        return parkingService.getAllParkingByOwner(Integer.parseInt(userId));
+        return parkingService.getAllParkingByOwner(Long.valueOf(userId));
     }
 
     @GetMapping("get/all/approved/parkings")
@@ -47,7 +47,7 @@ public class ParkingController {
     public ResponseEntity<ResponseData> getStartAndPoint(@PathParam("id") int id) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String userId = (String) auth.getPrincipal();
-        return parkingService.getStartAndPoint(id,Integer.parseInt(userId));
+        return parkingService.getStartAndPoint(id,Long.valueOf(userId));
     }
 
     @GetMapping("get/parking/{parkingId}")

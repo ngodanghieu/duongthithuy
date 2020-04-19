@@ -10,7 +10,7 @@ import javax.websocket.server.PathParam;
 
 public interface TransactionService {
 
-    ResponseEntity<ResponseData> createTransaction(CreateTransactionRequest request, int userId);
+    ResponseEntity<ResponseData> createTransaction(CreateTransactionRequest request, Long userId);
 
     ResponseEntity<ResponseData> getListParkingRequestForHost(int parkingId, String status);
 

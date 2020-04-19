@@ -11,5 +11,5 @@ public interface CredentialsService {
 
     ResponseEntity<ResponseData> login(LoginRequest request);
 
-    ResponseEntity<ResponseData> getUserProfile(int userId);
+    ResponseEntity<ResponseData> getUserProfile(Long userId);
 }

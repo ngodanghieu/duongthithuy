@@ -19,7 +19,7 @@ import javax.persistence.TemporalType;
 public class Transactions implements java.io.Serializable {
 
 	private Long id;
-	private int credentialId;
+	private Long credentialId;
 	private int parkingId;
 	private Date createdAt;
 	private String status;
@@ -34,7 +34,7 @@ public class Transactions implements java.io.Serializable {
 	public Transactions() {
 	}
 
-	public Transactions(int credentialId, int parkingId, Date createdAt, String status, Date sesion, String amount,
+	public Transactions(Long credentialId, int parkingId, Date createdAt, String status, Date sesion, String amount,
 			Date modifiedAt, String liencePlate, Date startTime, Date endTime, String reasonMesage) {
 		this.credentialId = credentialId;
 		this.parkingId = parkingId;
@@ -62,11 +62,11 @@ public class Transactions implements java.io.Serializable {
 	}
 
 	@Column(name = "credential_id", nullable = false)
-	public int getCredentialId() {
+	public Long getCredentialId() {
 		return this.credentialId;
 	}
 
-	public void setCredentialId(int credentialId) {
+	public void setCredentialId(Long credentialId) {
 		this.credentialId = credentialId;
 	}
 
