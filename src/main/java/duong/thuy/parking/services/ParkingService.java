@@ -10,7 +10,9 @@ public interface ParkingService {
 
     public ResponseEntity<ResponseData> getAllParkingByOwner(int userId);
 
-    public ResponseEntity<ResponseData> getStartAndPoint(int parkingId,int userId);
+    public ResponseEntity<ResponseData> getStartAndPoint(int parkingId, int userId);
 
     public ResponseEntity<ResponseData> getAllParkingApproved();
+
+    public ResponseEntity<ResponseData> getDetailParking(int parkingId);
 }

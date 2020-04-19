@@ -50,4 +50,9 @@ public class ParkingController {
         String userId = (String) auth.getPrincipal();
         return parkingService.getStartAndPoint(id,Integer.valueOf(userId));
     }
+
+    @GetMapping("get/parking/{parkingId}")
+    public ResponseEntity<ResponseData> getDetailParking(@PathParam("parkingId") int parkingId) {
+        return parkingService.getDetailParking(parkingId);
+    }
 }

@@ -10,4 +10,6 @@ public interface CredentialsService {
     ResponseEntity<ResponseData> register(RegisterRequest request);
 
     ResponseEntity<ResponseData> login(LoginRequest request);
+
+    ResponseEntity<ResponseData> getUserProfile(int userId);
 }

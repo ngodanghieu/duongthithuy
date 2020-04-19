@@ -1,11 +1,13 @@
 package duong.thuy.parking.services;
 
+import antlr.collections.impl.LList;
 import duong.thuy.parking.entities.Credentials;
 import duong.thuy.parking.repository.CredentialsRepository;
 import duong.thuy.parking.request.LoginRequest;
 import duong.thuy.parking.request.RegisterRequest;
 import duong.thuy.parking.response.LoginResponse;
 import duong.thuy.parking.response.ResponseData;
+import duong.thuy.parking.response.UserProfileResponse;
 import duong.thuy.parking.untils.Constant;
 import duong.thuy.parking.untils.Helper;
 import duong.thuy.parking.untils.JwtUltis;
@@ -69,6 +71,36 @@ public class CredentialsServiceImpl extends BaseService implements CredentialsSe
             return ResponseEntity.ok(responseUtils.responseSuccess(responseData, Constant.StatusCode.ERROR.getValue(),
                     Constant.StatusCode.ERROR.getMessage()));
         }
+    }
+
+    @Override
+    public ResponseEntity<ResponseData> getUserProfile(int userId) {
+
+        ResponseData responseData = new ResponseData();
+        try {
+            List<Credentials> credentialsList = credentialsRepository.findAllById(userId);
+            if (!CollectionUtils.isEmpty(credentialsList)) {
+                responseData.setData(dataResponse(credentialsList.get(0)));
+                return ResponseEntity.ok(responseUtils.responseSuccess(responseData, Constant.StatusCode.OK.getValue(),
+                        Constant.StatusCode.OK.getMessage()));
+            } else {
+                return ResponseEntity.ok(responseUtils.responseSuccess(responseData, Constant.StatusCode.NOT_FOUND.getValue(),
+                        Constant.StatusCode.NOT_FOUND.getMessage()));
+            }
+
+        } catch (Exception ex) {
+            return ResponseEntity.ok(responseUtils.responseSuccess(responseData, Constant.StatusCode.ERROR.getValue(),
+                    Constant.StatusCode.ERROR.getMessage()));
+        }
+
+    }
+
+    private UserProfileResponse dataResponse(Credentials credentials) {
+        UserProfileResponse result = new UserProfileResponse();
+        result.setEmail(credentials.getEmail());
+        result.setPoints(String.valueOf(credentials.getPoints()));
+        result.setUsername(credentials.getUserName());
+        return result;
     }
 
     private Credentials createCredentials(RegisterRequest request) {

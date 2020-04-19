@@ -9,6 +9,7 @@ import duong.thuy.parking.repository.ParkingRepository;
 import duong.thuy.parking.repository.RatingRepository;
 import duong.thuy.parking.request.ParkingSpotRequest;
 import duong.thuy.parking.response.AmountOwnerResponse;
+import duong.thuy.parking.response.ParkingResponse;
 import duong.thuy.parking.response.ResponseData;
 import duong.thuy.parking.untils.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -115,6 +116,47 @@ public class ParkingServiceImpl extends BaseService implements ParkingService {
             return ResponseEntity.ok(responseUtils.responseSuccess(responseData, Constant.StatusCode.ERROR.getValue(),
                     Constant.StatusCode.ERROR.getMessage()));
         }
+    }
+
+    @Override
+    public ResponseEntity<ResponseData> getDetailParking(int parkingId) {
+        ResponseData responseData = new ResponseData();
+        try {
+            List<Parking> parkingList = parkingRepository.findById(parkingId);
+
+            if (!CollectionUtils.isEmpty(parkingList)) {
+                responseData.setData(dataResponse(parkingList.get(0)));
+                return ResponseEntity.ok(responseUtils.responseSuccess(responseData, Constant.StatusCode.OK.getValue(),
+                        Constant.StatusCode.OK.getMessage()));
+            } else {
+                return ResponseEntity.ok(responseUtils.responseSuccess(responseData, Constant.StatusCode.NOT_FOUND.getValue(),
+                        Constant.StatusCode.NOT_FOUND.getMessage()));
+            }
+        } catch (Exception ex) {
+            return ResponseEntity.ok(responseUtils.responseSuccess(responseData, Constant.StatusCode.ERROR.getValue(),
+                    Constant.StatusCode.ERROR.getMessage()));
+        }
+    }
+
+    private ParkingResponse dataResponse(Parking parking){
+        ParkingResponse result = new ParkingResponse();
+        result.setAddress(parking.getAddress());
+        result.setBlockAmount(Long.valueOf(parking.getBlockAmount()));
+        result.setCapacity(parking.getCapacity());
+        result.setCertificateOfland(parking.getCertificateOfLand());
+        result.setCreated_at(parking.getCreatedAt().toString());
+        result.setId(parking.getId());
+        result.setKindOf(parking.getKindOf());
+        result.setLatitude(Double.valueOf(parking.getLatitude()));
+        result.setLongitude(Double.valueOf(parking.getLongitude()));
+        result.setModified_at(parking.getModifiedAt().toString());
+        result.setOwnerId((long) parking.getOwnerId());
+        result.setParkingImages(parking.getParkingImage());
+        result.setParkingName(parking.getParkingName());
+        result.setStatus(parking.getStatus());
+        result.setProperties(parking.getProperties());
+        result.setPayment(parking.getPayment());
+        return result;
     }
 
     private Parking createNewParking(ParkingSpotRequest request, int userId) {

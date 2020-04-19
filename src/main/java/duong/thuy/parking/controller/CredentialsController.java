@@ -6,6 +6,8 @@ import duong.thuy.parking.response.ResponseData;
 import duong.thuy.parking.services.CredentialsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,6 +33,13 @@ public class CredentialsController {
     @PostMapping("login")
     public ResponseEntity<ResponseData> login(@Valid @RequestBody LoginRequest request , BindingResult bindingResult){
         return credentialsService.login(request);
+    }
+
+    @PostMapping("get/detail/profile")
+    public ResponseEntity<ResponseData> getUserProfile(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String userId = (String) auth.getPrincipal();
+        return credentialsService.getUserProfile(Integer.parseInt(userId));
     }
 
 }
