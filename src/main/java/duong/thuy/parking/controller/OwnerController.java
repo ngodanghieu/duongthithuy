@@ -1,10 +1,8 @@
 package duong.thuy.parking.controller;
 
 import duong.thuy.parking.request.CreateOwnerRequest;
-import duong.thuy.parking.request.RegisterRequest;
 import duong.thuy.parking.response.ResponseData;
 import duong.thuy.parking.services.OwnerService;
-import duong.thuy.parking.services.OwnerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -30,6 +28,6 @@ public class OwnerController {
     public ResponseEntity<ResponseData> createOwner(@Valid @RequestBody CreateOwnerRequest request , BindingResult bindingResult){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String userId = (String) auth.getPrincipal();
-        return ownerService.createOwner(request,Integer.valueOf(userId));
+        return ownerService.createOwner(request,Integer.parseInt(userId));
     }
 }

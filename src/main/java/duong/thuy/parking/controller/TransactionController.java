@@ -4,7 +4,6 @@ import duong.thuy.parking.request.ChangeTransactionStatusRequest;
 import duong.thuy.parking.request.CreateTransactionRequest;
 import duong.thuy.parking.response.ResponseData;
 import duong.thuy.parking.services.TransactionService;
-import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -34,7 +32,7 @@ public class TransactionController {
                                                           BindingResult bindingResult) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String userId = (String) auth.getPrincipal();
-        return transactionService.createTransaction(request,Integer.valueOf(userId));
+        return transactionService.createTransaction(request,Integer.parseInt(userId));
     }
     @PostMapping("owner/get/transactions/parking/{parkingId}/state/{status}")
     public ResponseEntity<ResponseData> getListParkingRequestForHost(@PathParam("parkingId")int parkingId,

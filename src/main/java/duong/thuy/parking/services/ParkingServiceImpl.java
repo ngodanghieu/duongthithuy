@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 
@@ -33,6 +34,7 @@ public class ParkingServiceImpl extends BaseService implements ParkingService {
     private CredentialsRepository credentialsRepository;
 
     @Override
+    @Transactional
     public ResponseEntity<ResponseData> createParking(ParkingSpotRequest request, int userId) {
         ResponseData responseData = new ResponseData();
         try {

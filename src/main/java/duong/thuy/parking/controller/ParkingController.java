@@ -1,6 +1,5 @@
 package duong.thuy.parking.controller;
 
-import duong.thuy.parking.request.CreateOwnerRequest;
 import duong.thuy.parking.request.ParkingSpotRequest;
 import duong.thuy.parking.response.ResponseData;
 import duong.thuy.parking.services.ParkingService;
@@ -36,7 +35,7 @@ public class ParkingController {
     public ResponseEntity<ResponseData> getAllParkingByOwner() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String userId = (String) auth.getPrincipal();
-        return parkingService.getAllParkingByOwner(Integer.valueOf(userId));
+        return parkingService.getAllParkingByOwner(Integer.parseInt(userId));
     }
 
     @GetMapping("get/all/approved/parkings")
@@ -48,7 +47,7 @@ public class ParkingController {
     public ResponseEntity<ResponseData> getStartAndPoint(@PathParam("id") int id) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String userId = (String) auth.getPrincipal();
-        return parkingService.getStartAndPoint(id,Integer.valueOf(userId));
+        return parkingService.getStartAndPoint(id,Integer.parseInt(userId));
     }
 
     @GetMapping("get/parking/{parkingId}")

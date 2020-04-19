@@ -1,10 +1,8 @@
 package duong.thuy.parking.services;
 
-import duong.thuy.parking.entities.Credentials;
 import duong.thuy.parking.entities.Owners;
 import duong.thuy.parking.entities.Parking;
 import duong.thuy.parking.entities.Transactions;
-import duong.thuy.parking.repository.CredentialsRepository;
 import duong.thuy.parking.repository.OwnerRepository;
 import duong.thuy.parking.repository.ParkingRepository;
 import duong.thuy.parking.repository.TransactionRepository;
@@ -13,11 +11,14 @@ import duong.thuy.parking.request.CreateTransactionRequest;
 import duong.thuy.parking.response.ResponseData;
 import duong.thuy.parking.response.TicketResponse;
 import duong.thuy.parking.untils.Constant;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import javax.transaction.Transactional;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,6 +36,7 @@ public class TransactionServiceImpl extends BaseService implements TransactionSe
     private ParkingRepository parkingRepository;
 
     @Override
+    @Transactional
     public ResponseEntity<ResponseData> createTransaction(CreateTransactionRequest request, int userId) {
         ResponseData responseData = new ResponseData();
         try {
@@ -88,6 +90,7 @@ public class TransactionServiceImpl extends BaseService implements TransactionSe
     }
 
     @Override
+    @Transactional
     public ResponseEntity<ResponseData> updateStatusRequestParking(ChangeTransactionStatusRequest request) {
         ResponseData responseData = new ResponseData();
         try {
@@ -138,12 +141,14 @@ public class TransactionServiceImpl extends BaseService implements TransactionSe
         return ticketResponse;
     }
 
+    @SneakyThrows
     private Transactions createNewTransaction(CreateTransactionRequest request, int userId) {
         Transactions data = new Transactions();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
         data.setCreatedAt(new Date());
         data.setCredentialId(userId);
-        data.setEndTime(new Date(request.getEndTime()));
-        data.setStartTime(new Date(request.getStartTime()));
+        data.setEndTime(simpleDateFormat.parse(request.getEndTime()));
+        data.setStartTime(simpleDateFormat.parse(request.getStartTime()));
         data.setLiencePlate(request.getLicence());
         data.setSesion(new Date());
         data.setReasonMesage(request.getPhoneNumber());

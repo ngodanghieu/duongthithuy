@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import javax.transaction.Transactional;
 import java.security.acl.Owner;
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class OwnerServiceImpl extends BaseService implements OwnerService {
     private OwnerRepository ownerRepository;
 
     @Override
+    @Transactional
     public ResponseEntity<ResponseData> createOwner(CreateOwnerRequest request, int userId) {
         ResponseData responseData = new ResponseData();
         try {

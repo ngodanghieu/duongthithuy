@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -26,6 +27,7 @@ public class RatingServiceImpl extends BaseService implements RatingService {
     private RatingRepository ratingRepository;
 
     @Override
+    @Transactional
     public ResponseEntity<ResponseData> updateStatusRequestParking(RatingRequest request) {
         ResponseData responseData = new ResponseData();
         try {

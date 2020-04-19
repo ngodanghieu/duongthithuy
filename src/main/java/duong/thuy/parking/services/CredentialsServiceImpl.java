@@ -1,6 +1,5 @@
 package duong.thuy.parking.services;
 
-import antlr.collections.impl.LList;
 import duong.thuy.parking.entities.Credentials;
 import duong.thuy.parking.repository.CredentialsRepository;
 import duong.thuy.parking.request.LoginRequest;
@@ -11,14 +10,12 @@ import duong.thuy.parking.response.UserProfileResponse;
 import duong.thuy.parking.untils.Constant;
 import duong.thuy.parking.untils.Helper;
 import duong.thuy.parking.untils.JwtUltis;
-import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import javax.transaction.Transactional;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -29,8 +26,8 @@ public class CredentialsServiceImpl extends BaseService implements CredentialsSe
     @Autowired
     private CredentialsRepository credentialsRepository;
 
-
     @Override
+    @Transactional
     public ResponseEntity<ResponseData> register(RegisterRequest request) {
         ResponseData responseData = new ResponseData();
         try {
