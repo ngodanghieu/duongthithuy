@@ -8,11 +8,11 @@ public class Constant {
 
 
     public enum StatusCode {
-        OK(200000,"OK"),
-        ERROR(400000,"Lỗi hệ thống"),
-        DUPLICATE(400002,"Đã tồn tại"),
-        INVALID(400003,"Tên tài khoản hoặc mật khẩu không đúng"),
-        NOT_FOUND(400001,"Không có data");
+        OK(200000, "OK"),
+        ERROR(400000, "Lỗi hệ thống"),
+        DUPLICATE(400002, "Đã tồn tại"),
+        INVALID(400003, "Tên tài khoản hoặc mật khẩu không đúng"),
+        NOT_FOUND(400001, "Không có data");
 
         private int value;
         private String message;
@@ -37,12 +37,28 @@ public class Constant {
 
         private String role;
 
-        Role( String message) {
+        Role(String message) {
             this.role = message;
         }
 
         public String getRole() {
             return role;
         }
+    }
+
+    public enum Status {
+        ACTIVE(1),
+        IN_ACTIVE(0);
+
+        private int status;
+
+        Status(int status) {
+            this.status = status;
+        }
+
+        public String getStatus() {
+            return String.valueOf(status);
+        }
+
     }
 }
